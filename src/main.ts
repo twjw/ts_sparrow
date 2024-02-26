@@ -1,24 +1,20 @@
-import './style.css'
-import typescriptLogo from './typescript.svg'
-import viteLogo from '/vite.svg'
-import { setupCounter } from './counter.ts'
+import {createRenderer} from "@/renderer";
 
-document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
-  <div>
-    <a href="https://vitejs.dev" target="_blank">
-      <img src="${viteLogo}" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://www.typescriptlang.org/" target="_blank">
-      <img src="${typescriptLogo}" class="logo vanilla" alt="TypeScript logo" />
-    </a>
-    <h1>Vite + TypeScript</h1>
-    <div class="card">
-      <button id="counter" type="button"></button>
-    </div>
-    <p class="read-the-docs">
-      Click on the Vite and TypeScript logos to learn more
-    </p>
-  </div>
-`
-
-setupCounter(document.querySelector<HTMLButtonElement>('#counter')!)
+const app = document.querySelector<HTMLDivElement>('#app')!
+const renderer = createRenderer(600, 400)
+renderer.line({
+  x1: 0,
+  y1: 0,
+  x2: 50,
+  y2: 50,
+  stroke: 'black',
+})
+renderer.rect({
+  width: 50,
+  height: 50,
+  x: 100,
+  y: 100,
+  fill: 'red',
+  stroke: 'black'
+})
+app.appendChild(renderer.node());
